@@ -5,8 +5,8 @@ import (
 	"testing"
 	"time"
 
-	. "gopkg.in/check.v1"
 	"github.com/cnaude/go-syslog/parser/v3"
+	. "gopkg.in/check.v1"
 )
 
 // Hooks up gocheck into the gotest runner.
