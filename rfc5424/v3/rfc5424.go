@@ -1,6 +1,3 @@
-// Note to self : never try to code while looking after your kids
-// The result might look like this : https://pbs.twimg.com/media/BXqSuYXIEAAscVA.png
-
 package rfc5424
 
 import (
