@@ -36,6 +36,7 @@ type Server struct {
 	datagramChannelSize     int
 	datagramChannel         chan DatagramMessage
 	format                  format.Format
+	scanBufferSize					int
 	handler                 Handler
 	lastError               error
 	readTimeoutMilliseconds int64
@@ -53,6 +54,11 @@ func NewServer() *Server {
 
 		datagramChannelSize: datagramChannelBufferSize,
 	}
+}
+
+//Sets the maximum scanner buffer size
+func (s *Server) SetScannerBufferSize(i int) {
+	s.scanBufferSize = i
 }
 
 //Sets the syslog format (RFC3164 or RFC5424 or RFC6587)
@@ -229,6 +235,10 @@ func (s *Server) goScanConnection(connection net.Conn) {
 	}
 
 	var scanCloser *ScanCloser
+	if s.scanBufferSize > 0 {
+		buf := make([]byte, s.scanBufferSize)
+		scanner.Buffer(buf, s.scanBufferSize)
+	}
 	scanCloser = &ScanCloser{scanner, connection}
 
 	s.wait.Add(1)
@@ -246,7 +256,7 @@ loop:
 		if s.readTimeoutMilliseconds > 0 {
 			scanCloser.closer.SetReadDeadline(time.Now().Add(time.Duration(s.readTimeoutMilliseconds) * time.Millisecond))
 		}
-		if scanCloser.Scan() {
+		if scanCloser.Scan() {			
 			s.parser([]byte(scanCloser.Text()), client, tlsPeer)
 		} else {
 			break loop
