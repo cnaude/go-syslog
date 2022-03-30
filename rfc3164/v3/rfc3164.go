@@ -5,7 +5,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/cnaude/go-syslog/parser"
+	"github.com/cnaude/go-syslog/parser/v3"
 )
 
 type Parser struct {

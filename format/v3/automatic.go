@@ -5,8 +5,8 @@ import (
 	"bytes"
 	"strconv"
 
-	"github.com/cnaude/go-syslog/syslogparser/rfc3164"
-	"github.com/cnaude/go-syslog/syslogparser/rfc5424"
+	"github.com/cnaude/go-syslog/rfc3164/v3"
+	"github.com/cnaude/go-syslog/rfc5424/v3"
 )
 
 /* Selecting an 'Automatic' format detects incoming format (i.e. RFC3164 vs RFC5424) and Framing
