@@ -3,7 +3,7 @@ module github.com/cnaude/go-syslog/rfc3164/v3
 go 1.18
 
 require (
-	github.com/cnaude/go-syslog/parser/v3 v3.0.3
+	github.com/cnaude/go-syslog/parser/v3 v3.0.0-20220727235547-54b2961f05ca
 	gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c
 )
 
